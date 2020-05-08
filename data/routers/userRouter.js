@@ -22,11 +22,22 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-console.log(req.body);
   action
     .insert(req.body)
     .then((project) => {
       res.status(201).json(project);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+router.put("/:id", (req, res) => {
+  action
+    .update(req.params.id, req.body)
+    .then((update) => {
+      res.status(200).json(update);
     })
     .catch((err) => {
       console.log(err);
