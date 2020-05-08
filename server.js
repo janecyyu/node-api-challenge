@@ -1,8 +1,10 @@
 const express = require("express");
 const server = express();
+const userRouter = require("./data/routers/userRouter");
 // const cors = require('cors')
 
 server.use(express.json());
+server.use("/users", userRouter);
 // server.use(cors());
 // server.use(logger);
 server.get("/", (req, res) => {
