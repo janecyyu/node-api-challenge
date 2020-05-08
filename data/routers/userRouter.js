@@ -45,4 +45,16 @@ router.put("/:id", (req, res) => {
     });
 });
 
+router.delete("/:id", (req, res) => {
+  action
+    .remove(req.params.id)
+    .then((remove) => {
+      res.status(200).json(remove);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
 module.exports = router;
