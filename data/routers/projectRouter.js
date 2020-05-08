@@ -17,4 +17,40 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  projectModel
+    .insert(req.body)
+    .then((project) => {
+      res.status(201).json(project);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+router.delete('/:id', (req, res) => {
+    projectModel
+    .remove(req.params.id)
+    .then((remove) => {
+      res.status(200).json(remove);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: err });
+    });
+});
+
+router.put("/:id", (req, res) => {
+    projectModel
+      .update(req.params.id, req.body)
+      .then((update) => {
+        res.status(200).json(update);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: err });
+      });
+  });
+
 module.exports = router;
